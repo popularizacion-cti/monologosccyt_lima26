@@ -1,0 +1,75 @@
+/* Configuración de variables de Tailwind inyectadas por CSS si fuese necesario, 
+   o estilos complementarios personalizados */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border-bottom: 1px solid #e2e8f0; 
+    padding: 14px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #4DB748; /* Encabezado verde */
+    color: white;
+    font-weight: bold;
+}
+
+/* Colores alternados por bloques */
+.bloque-gris {
+    background-color: #f8fafc; 
+}
+
+.bloque-blanco {
+    background-color: #ffffff;
+}
+
+.left-align {
+    text-align: left;
+}
+
+.check-verde {
+    color: #B4BD0E; 
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Clases de utilidad para imágenes circulares */
+.imagen-circular {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.sub-nav {
+    background-color: white;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.sub-nav a {
+    text-decoration: none;
+    color: #7A2C8E;
+    font-weight: bold;
+    margin: 4px 6px;
+    padding: 8px 8px;
+    border-radius: 15px;
+    transition: all 0.3s;
+}
+
+.sub-nav a:hover {
+    background-color: #7A2C8E;
+    color: white;
+}
