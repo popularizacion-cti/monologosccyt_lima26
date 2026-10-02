@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concurso de Monólogos Científicos para CCYT | CONCYTEC</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración de Tailwind movida al Head para que reconozca los colores -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#F79131',   // Naranja
+                        dark: '#7A2C8E',    // Morado
+                        accent: '#4DB748',  // Verde claro
+                    }
+                }
+            }
+        };
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="pagina8.css">
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <header id="inicio" class="relative h-[80vh] flex items-center justify-center text-center text-white bg-slate-900">
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-40">
+            <source src="assets/video/monologosccyt.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
+
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/50"></div>
+
+        <div class="relative z-10 px-4 animate__animated animate__fadeInUp">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-2 mt-48 md:mt-52">Concurso de <br> <span class="text-brand">Monólogos Científicos</span> <br></h1>
+            <p class="text-3xl md:text-4xl mb-2 max-w-3xl mx-auto font-extrabold">para Clubes de Ciencia y Tecnología</p>
+            <p class="text-3xl md:text-4xl mb-6 max-w-3xl mx-auto">Lima 2026</p>
+            
+            <div class="mt-8 flex flex-wrap justify-center gap-3 md:gap-4 w-full">
+                <a href="#finalistas" class="text-xl w-full sm:w-auto border-2 border-accent bg-accent px-6 py-3 rounded-xl font-bold text-white hover:bg-accent/80 hover:border-accent/80 hover:scale-105 transition-all duration-300 shadow-lg shadow-accent/30">
+                    FINALISTAS
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="sub-nav sticky top-0 z-50 flex flex-wrap justify-center gap-0 md:gap-4 bg-slate-50 border-b border-slate-200 py-0 md:py-1 px-4 shadow-sm backdrop-blur-md bg-slate-50/90">
+        <a href="#presentacion" class="text-xs md:text-sm font-bold text-slate-600 hover:text-brand transition-colors px-2 py-1">Acerca del concurso</a>
+        <a href="#bases" class="text-xs md:text-sm font-bold text-slate-600 hover:text-brand transition-colors px-2 py-1">¿Cómo participar?</a>
+        <a href="#cronograma" class="text-xs md:text-sm font-bold text-slate-600 hover:text-brand transition-colors px-2 py-1">Cronograma</a>
+        <a href="#videos" class="text-xs md:text-sm font-bold text-slate-600 hover:text-brand transition-colors px-2 py-1">Galería de videos</a>
+    </nav>
+
+    <!-- -------------
+    FINALISTAS
+    ------------- -->
+    
+    <script>
+        const mostrarFinalistas = false; // <-- ¡CAMBIA ESTO A true PARA MOSTRAR LA TABLA!
+    </script>
+    <!-- =================================================================== -->
+
+    <section id="finalistas" class="py-24 md:py-16 bg-slate-100">
+        <div class="container mx-auto max-w-6xl px-4 lg:px-8">
+            
+            <div class="flex flex-col items-center mb-4">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-dark tracking-tight text-center">Finalistas seleccionados</h2>
+                <div class="w-16 h-1 bg-brand mt-4 rounded-full"></div>
+                <p class="text-slate-500 mt-4 text-center max-w-2xl text-sm md:text-base">Lista oficial de los 8 estudiantes clasificados para la presentación de monólogos científicos.</p>
+            </div>
+
+            <!-- CONTENEDOR: MENSJE DE "PRÓXIMAMENTE" (Se muestra si mostrarFinalistas es false) -->
+            <div id="mensaje-espera-finalistas" class="bg-white rounded-xl shadow-lg border-t-4 border-slate-300 p-12 text-center mt-8">
+                <div class="text-4xl mb-4">⏳</div>
+                <h3 class="text-xl font-bold text-dark mb-2">Resultados en proceso</h3>
+                <p class="text-slate-600">La lista oficial de finalistas será publicada el <b class="text-brand">miércoles 14 de octubre</b>.</p>
+            </div>
+
+            <!-- CONTENEDOR: TABLA Y BOTONES (Se muestra si mostrarFinalistas es true) -->
+            <div id="contenido-finalistas" class="hidden">
+                <div class="bg-white rounded-xl shadow-lg border-t-4 border-brand overflow-hidden mt-8">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse min-w-[800px]">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs w-24">Región</th>
+                                    <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs">Institución Educativa</th>
+                                    <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs">Club de Ciencia y Tecnología</th>
+                                    <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs">Nombres y Apellidos</th>
+                                    <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs text-center">Grado de Estudios</th>
+                                    <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs w-1/5">Título del Monólogo</th>
+                                    <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs text-center">Clasificación</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody id="tabla-participantes" class="divide-y divide-slate-100">
+                                <tr>
+                                    <td colspan="7" class="py-6 px-4 text-center text-slate-500 text-sm font-medium">
+                                        <span class="animate-pulse">Cargando datos desde Google Sheets...</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4 mb-2">
+                    <a href="https://drive.google.com/file/d/1ZLPlSnbytXZBiC5w-grY-ZD8tE5CDnYM/view" target="_blank" class="flex items-center justify-center gap-2 px-6 py-2.5 bg-brand text-white font-semibold rounded-lg shadow-md hover:opacity-90 transition-all text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Descargar Finalistas
+                    </a>
+
+                    <a href="https://drive.google.com/file/d/1j0AECjN-QFAZ8kifxzvPzInZLhnV7VQm/view" target="_blank" class="flex items-center justify-center gap-2 px-6 py-2.5 bg-slate-800 text-white font-semibold rounded-lg shadow-md hover:bg-slate-700 transition-all text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Descargar Acta de Jurado
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Script lógico para alternar la vista -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const msjEspera = document.getElementById('mensaje-espera-finalistas');
+            const contFinalistas = document.getElementById('contenido-finalistas');
+
+            if (mostrarFinalistas) {
+                msjEspera.classList.add('hidden');
+                contFinalistas.classList.remove('hidden');
+            } else {
+                msjEspera.classList.remove('hidden');
+                contFinalistas.classList.add('hidden');
+            }
+        });
+    </script>
+
+    <!-- ---------------
+    PRESENTACION
+    --------------- -->
+
+    <section id="presentacion" class="py-24 md:py-16 bg-slate-50">
+        <div class="container mx-auto max-w-6xl px-6 lg:px-8">
+            <div class="flex flex-col items-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-dark tracking-tight text-center">Acerca del concurso</h2>
+                <div class="w-16 h-1 bg-brand mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                <div class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-brand flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="p-3 bg-accent/10 rounded-xl text-accent">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-accent">El Concurso</h3>
+                    </div>
+                    
+                    <div class="text-slate-600 space-y-4 text-sm md:text-base flex-grow">
+                        <p>El concurso de <b class="text-slate-800">Monólogos Científicos</b> para Clubes de Ciencia y Tecnología, es un espacio dedicado a fomentar la divulgación científica desde la edad escolar y promover las capacidades comunicativas entre los estudiantes miembros de los clubes.</p>
+                        
+                        <p>El concurso es organizado por el Concytec y está diseñado para inspirar y motivar a los estudiantes a participar activamente en la divulgación de sus áreas de indagación, a través de la preparación y presentación de monólogos científicos.</p>
+                        
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 mt-6">
+                            <p class="text-sm leading-relaxed">
+                                El presente concurso se llevará a cabo en el marco del <b class="text-slate-800">la feria Perú con Ciencia 2026</b>, a realizarse del <span class="font-bold text-brand">29 al 31 de octubre de 2026</span> en la ciudad de Chiclayo, región Lambayeque.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-brand flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="p-3 bg-accent/10 rounded-xl text-accent">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-accent">Participación</h3>
+                    </div>
+                    
+                    <div class="text-slate-600 space-y-4 text-sm md:text-base flex-grow">
+                        <p>Pueden participar estudiantes de <b class="text-slate-800">nivel secundario</b> (2° a 5° grado), de instituciones educativas públicas o privadas, que sean miembros de <b class="text-slate-800">clubes de ciencia y tecnología</b> formalmente registrados en el SIGECCYT del Concytec, pertenecientes a instituciones educativas de la región Lambayeque.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --------------------------
+    COMO PARTICIPAR
+    --------------------------- -->
+
+    <section id="bases" class="py-24 md:py-16 bg-slate-100">
+        <div class="container mx-auto max-w-6xl px-6 lg:px-8">
+            <div class="flex flex-col items-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-dark tracking-tight text-center">¿Cómo participar?</h2>
+                <div class="w-16 h-1 bg-brand mt-4 rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-brand flex flex-col h-full">
+                    <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-dark mb-3">Bases del Concurso</h3>
+                    <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">Descarga los lineamientos técnicos y requisitos obligatorios para participar en el concurso.</p>
+                    
+                    <div class="mt-auto pt-4 border-t border-slate-100">
+                        <a href="https://drive.google.com/file/d/1YaMAjv0RNg7gU472J6YosSr5h9GLPg0h/view" target="_blank" class="inline-flex items-center gap-2 text-brand font-bold hover:text-brand/80 transition-colors group">
+                            Descargar PDF 
+                            <span class="transform transition-transform group-hover:translate-x-1">→</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-brand flex flex-col h-full">
+                    <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-dark mb-3">Taller de capacitación</h3>
+                    <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">Taller virtual para la preparación de monólogos científicos, a cargo de la Dra. Myra Flores, química y divulgadora científica.</p>
+                    
+                    <div class="mt-auto pt-4 border-t border-slate-100 flex flex-col gap-3">
+                        <a href="https://drive.google.com/file/d/1SIZZwjZXlRcIRs8Vvrklp1ljmXkEKwpI/view?ts=6abc1751" target="_blank" class="inline-flex items-center gap-2 text-brand font-bold hover:text-brand/80 transition-colors group">
+                            Taller - Lambayeque 2026 
+                            <span class="transform transition-transform group-hover:translate-x-1">→</span>
+                        </a>
+                        <a href="https://youtu.be/CCsvvGtIRN0" target="_blank" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-brand transition-colors group">
+                            Taller - Huánuco 2026 
+                            <span class="transform transition-transform group-hover:translate-x-1">→</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-t-4 border-brand flex flex-col h-full">
+                    <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                        </svg>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-dark mb-3">Postulación</h3>
+                    <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">El periodo de inscripción se encuentra abierto. Registra a tu Club de Ciencia y Tecnología y participa del concurso.</p>
+                    
+                    <div class="mt-auto pt-4 border-t border-slate-100">
+                        <a href="https://forms.gle/zAo4JoPUGTT6t9My7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-brand font-bold hover:text-brand/80 transition-colors group">
+                            Enviar información
+                            <span class="transform transition-transform group-hover:translate-x-1">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --------------------
+    CRONOGRAMA 
+    --------------------  -->
+
+    <section id="cronograma" class="py-24 md:py-16 bg-slate-50">
+        <div class="container mx-auto max-w-6xl px-6 lg:px-8">
+            <div class="flex flex-col items-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-dark tracking-tight text-center">Cronograma</h2>
+                <div class="w-16 h-1 bg-brand mt-4 rounded-full"></div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-t-4 border-brand overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[600px]">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th class="py-4 px-6 font-bold uppercase tracking-wider text-xs w-48">Etapa</th>
+                                <th class="py-4 px-6 font-bold uppercase tracking-wider text-xs">Hitos</th>
+                                <th class="py-4 px-6 font-bold uppercase tracking-wider text-xs w-64">Fecha</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody class="divide-y divide-slate-100 text-sm">
+                            <!-- ETAPA 1 (AHORA RESALTADA) -->
+                            <tr class="bg-accent/5 hover:bg-accent/10 transition-colors">
+                                <td rowspan="3" class="py-6 px-6 align-middle relative border-b border-slate-100">
+                                    <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-accent"></div>
+                                    <div class="font-bold text-dark text-base">Etapa 1</div>
+                                    <div class="text-accent font-extrabold text-[11px] uppercase tracking-wider mt-1">Inscripción</div>
+                                </td>
+                                <td class="py-4 px-6 text-dark font-medium border-b border-accent/10">Invitación a participar vía correo electrónico a los docentes asesores.</td>
+                                <td class="py-4 px-6 text-accent font-bold whitespace-nowrap border-b border-accent/10">Miércoles 2 y jueves 3 de setiembre del 2026</td>
+                            </tr>
+                            <tr class="bg-accent/5 hover:bg-accent/10 transition-colors">
+                                <td class="py-4 px-6 text-dark font-medium border-b border-accent/10">Taller de capacitación (virtual)</td>
+                                <td class="py-4 px-6 text-accent font-bold whitespace-nowrap border-b border-accent/10">Miércoles 16 de setiembre del 2026</td>
+                            </tr>
+                            <tr class="bg-accent/5 hover:bg-accent/10 transition-colors">
+                                <td class="py-4 px-6 text-dark font-medium border-b border-slate-100">Fecha límite para envío del monólogo en video</td>
+                                <td class="py-4 px-6 text-accent font-bold whitespace-nowrap border-b border-slate-100">Domingo 11 de octubre del 2026</td>
+                            </tr>
+
+                            <!-- ETAPA 2 (NORMAL) -->
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="py-5 px-6 border-b border-slate-100 align-top bg-slate-50/30">
+                                    <div class="font-bold text-dark text-base">Etapa 2</div>
+                                    <div class="text-slate-500 font-semibold text-[11px] uppercase tracking-wider mt-1">Selección</div>
+                                </td>
+                                <td class="py-5 px-6 text-slate-600 border-b border-slate-100">Publicación de finalistas</td>
+                                <td class="py-5 px-6 text-slate-500 whitespace-nowrap border-b border-slate-100">Miércoles 14 de octubre del 2026</td>
+                            </tr>
+
+                            <!-- ETAPA 3 (AHORA NORMAL) -->
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="py-5 px-6 align-top bg-slate-50/30">
+                                    <div class="font-bold text-dark text-base">Etapa 3</div>
+                                    <div class="text-slate-500 font-semibold text-[11px] uppercase tracking-wider mt-1">Final</div>
+                                </td>
+                                <td class="py-5 px-6 text-slate-600">Final (presencial)</td>
+                                <td class="py-5 px-6 text-slate-500 whitespace-nowrap">Sábado 31 de octubre del 2026</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --------------------
+    GALERIA DE VIDEOS
+    -------------------- -->
+
+    <section id="videos" class="py-24 md:py-16 bg-slate-100">
+        <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
+            <div class="flex flex-col items-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-dark tracking-tight text-center">Galería de videos</h2>
+                <div class="w-16 h-1 bg-brand mt-4 rounded-full"></div>
+            </div>
+
+            <div class="relative group">
+                <button id="btn-prev-video" class="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-brand hover:bg-brand hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:flex cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+
+                <div id="contenedor-videos" class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 pt-4 custom-scrollbar">
+                    <p class="text-slate-500 font-medium text-center w-full py-12 animate-pulse">Cargando videos desde Google Sheets...</p>
+                </div>
+
+                <button id="btn-next-video" class="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-brand hover:bg-brand hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:flex cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <style>
+            .custom-scrollbar::-webkit-scrollbar { display: none; }
+            .custom-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        </style>
+    </section>
+
+    <!-- ---------------------
+    INSTITUCIONES
+    --------------------- -->
+    
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6 lg:px-8 text-center max-w-6xl">
+            <div class="flex flex-col items-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-dark tracking-tight text-center">Institución Organizadora</h2>
+                <div class="w-16 h-1 bg-brand mt-4 rounded-full"></div>
+            </div>
+
+            <div class="flex justify-center items-center mb-16">
+                <!-- Cambiamos el div por una etiqueta "a" y añadimos el enlace -->
+                <a href="https://www.gob.pe/concytec" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-4 rounded-lg">
+                    <img src="assets/logos/logo-concytec.png" 
+                        alt="Concytec" 
+                        class="h-24 md:h-32 object-contain opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110">
+                </a>
+            </div>
+            
+            <div class="relative p-8 md:p-12 bg-slate-50 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 max-w-4xl mx-auto overflow-hidden">
+                <div class="absolute top-6 left-1/2 -translate-x-1/2 text-brand/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                    </svg>
+                </div>
+                <p class="text-slate-700 italic text-lg md:text-xl font-medium leading-relaxed relative z-10 mt-8">
+                    "Promoviendo el intercambio de experiencias de educación no formal para potenciar las vocaciones científicas y la cultura de indagación desde la educación básica."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- --------------------------
+    PIE DE PAGINA
+    -------------------------- -->
+
+    <footer class="bg-slate-900 text-white pt-16">
+        <div class="container mx-auto max-w-7xl px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pb-12 border-b border-white/10">
+                
+                <div class="flex flex-col items-center">
+                    <a href="https://www.gob.pe/concytec" target="_blank" rel="noopener noreferrer" class="block mb-6 transition-transform duration-300 hover:scale-105">
+                        <img src="assets/logos/logo-concytec-horizontal.png" alt="Concytec" class="h-32 brightness-0 invert opacity-90 hover:opacity-100 transition-opacity duration-300">
+                    </a>
+                    
+                    <a href="#inicio" rel="noopener noreferrer" class="block group cursor-pointer">
+                        <h3 class="text-brand font-extrabold text-2xl mb-3 tracking-wide text-center transition-colors duration-300 group-hover:text-white">
+                            Perú con Ciencia 2026
+                        </h3>
+                    </a>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6 uppercase text-accent tracking-widest text-sm">Enlaces de interés</h4>
+                    <ul class="space-y-3">
+                        <li><a href="https://sites.google.com/concytec.gob.pe/eureka" target="_blank" class="text-slate-300 hover:text-brand transition-colors text-sm flex items-center gap-2"><span class="text-brand text-xs">▸</span> Eureka</a></li>
+                        <li><a href="https://clubescyt.concytec.gob.pe/" target="_blank" class="text-slate-300 hover:text-brand transition-colors text-sm flex items-center gap-2"><span class="text-brand text-xs">▸</span> Clubes de Ciencia y Tecnología</a></li>
+                        <li><a href="https://sites.google.com/concytec.gob.pe/pop/agenda-popcti" target="_blank" class="text-slate-300 hover:text-brand transition-colors text-sm flex items-center gap-2"><span class="text-brand text-xs">▸</span> Agenda PopCTI</a></li>
+                        <li><a href="https://sites.google.com/concytec.gob.pe/pop/divulgacion/SdC-Peru" target="_blank" class="text-slate-300 hover:text-brand transition-colors text-sm flex items-center gap-2"><span class="text-brand text-xs">▸</span> Solo de Ciencia Perú</a></li>
+                        <li><a href="https://sites.google.com/concytec.gob.pe/pop/febicyt" target="_blank" class="text-slate-300 hover:text-brand transition-colors text-sm flex items-center gap-2"><span class="text-brand text-xs">▸</span> Feria Escolar Binacional Perú Ecuador</a></li>
+                        <li><a href="https://cienciactiva.concytec.gob.pe/#/" target="_blank" class="text-slate-300 hover:text-brand transition-colors text-sm flex items-center gap-2"><span class="text-brand text-xs">▸</span> CienciActiva</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-6 uppercase text-accent tracking-widest text-sm">Contacto</h4>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-brand shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0z"/></svg>
+                            <span class="text-slate-300 text-sm">Av. del Aire 485, San Borja, Lima</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-brand shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.896-1.596-5.273-3.973-6.869-6.87l1.293-.97c.362-.271.527-.733.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25z"/></svg>
+                            <span class="text-slate-300 text-sm">(01) 3990030 - Anexo 1915</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-brand shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25H4.5a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5H4.5a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.909A2.25 2.25 0 0 1 2.25 8.663V6.75"/></svg>
+                            <a href="mailto:popularizacion@concytec.gob.pe" class="text-slate-300 text-sm hover:text-white transition-colors">popularizacion@concytec.gob.pe</a>
+                        </li>
+                    </ul>
+
+                    <div class="flex gap-3">
+                        <a href="https://www.facebook.com/concytec/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand hover:-translate-y-1 transition-all duration-300">
+                            <svg class="w-5 h-5 fill-current text-white" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/concytecperu/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand hover:-translate-y-1 transition-all duration-300">
+                            <svg class="w-5 h-5 fill-current text-white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/ConcytecPeru" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand hover:-translate-y-1 transition-all duration-300">
+                            <svg class="w-5 h-5 fill-current text-white" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@concytecperu" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand hover:-translate-y-1 transition-all duration-300">
+                            <svg class="w-5 h-5 fill-current text-white" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v7.2c0 1.96-.5 3.96-1.7 5.48-1.56 1.98-4.04 3.03-6.55 2.87-2.61-.17-5.05-1.57-6.5-3.71-1.39-2.05-1.71-4.71-.78-6.93.9-2.15 2.67-3.88 4.88-4.63 1.12-.38 2.31-.49 3.5-.38v4.06c-1.07.03-2.16.29-3.05.93-.94.67-1.54 1.77-1.58 2.92-.04 1.34.56 2.66 1.57 3.52 1.11.95 2.72 1.25 4.11.85 1.48-.42 2.63-1.67 2.91-3.18.1-.53.11-1.08.11-1.62V.02z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div> 
+        </div> 
+    </footer>
+
+    <script src="pagina8.js"></script>
+</body>
+</html>
