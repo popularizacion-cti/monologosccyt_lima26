@@ -27,6 +27,16 @@
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
 
+    <!-- --------------------------
+    CINTILLO SUPERIOR (ANUNCIO)
+    --------------------------- -->
+    <div class="bg-dark text-white py-2 px-4 text-center text-xs md:text-sm font-medium sticky top-0 z-50 shadow-md border-b border-white/10 flex items-center justify-center gap-2">
+        <span>📢 <strong class="text-brand">Fecha de inicio de inscripción:</strong> 15 de octubre</span>
+        <a href="#bases" class="hidden sm:inline-block bg-brand hover:bg-brand/80 text-white font-bold text-[11px] px-2.5 py-0.5 rounded-full uppercase tracking-wider transition-colors ml-2">
+            Ver más
+        </a>
+    </div>
+
     <header id="inicio" class="relative h-[80vh] flex items-center justify-center text-center text-white bg-slate-900">
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-40">
             <source src="assets/video/monologosccyt.mp4" type="video/mp4">
@@ -39,110 +49,15 @@
             <h1 class="text-4xl md:text-6xl font-extrabold mb-2 mt-48 md:mt-52">Concurso de <br> <span class="text-brand">Monólogos Científicos</span> <br></h1>
             <p class="text-3xl md:text-4xl mb-2 max-w-3xl mx-auto font-extrabold">para Clubes de Ciencia y Tecnología</p>
             <p class="text-3xl md:text-4xl mb-6 max-w-3xl mx-auto">Lima Metropolitana 2026</p>
-            
-            <div class="mt-8 flex flex-wrap justify-center gap-3 md:gap-4 w-full">
-                <a href="#finalistas" class="text-xl w-full sm:w-auto border-2 border-accent bg-accent px-6 py-3 rounded-xl font-bold text-white hover:bg-accent/80 hover:border-accent/80 hover:scale-105 transition-all duration-300 shadow-lg shadow-accent/30">
-                    FINALISTAS
-                </a>
-            </div>
         </div>
     </header>
 
-    <nav class="sub-nav sticky top-0 z-50 flex flex-wrap justify-center gap-0 md:gap-4 bg-slate-50 border-b border-slate-200 py-0 md:py-1 px-4 shadow-sm backdrop-blur-md bg-slate-50/90">
+    <nav class="sub-nav sticky top-[36px] md:top-[40px] z-40 flex flex-wrap justify-center gap-0 md:gap-4 bg-slate-50 border-b border-slate-200 py-0 md:py-1 px-4 shadow-sm backdrop-blur-md bg-slate-50/90">
         <a href="#presentacion" class="text-xs md:text-sm font-bold text-slate-600 hover:text-brand transition-colors px-2 py-1">Acerca del concurso</a>
         <a href="#bases" class="text-xs md:text-sm font-bold text-slate-600 hover:text-brand transition-colors px-2 py-1">¿Cómo participar?</a>
         <a href="#cronograma" class="text-xs md:text-sm font-bold text-slate-600 hover:text-brand transition-colors px-2 py-1">Cronograma</a>
         <a href="#videos" class="text-xs md:text-sm font-bold text-slate-600 hover:text-brand transition-colors px-2 py-1">Galería de videos</a>
     </nav>
-
-    <!-- -------------
-    FINALISTAS
-    ------------- -->
-    
-    <script>
-        const mostrarFinalistas = false; // <-- ¡CAMBIA ESTO A true PARA MOSTRAR LA TABLA!
-    </script>
-    <!-- =================================================================== -->
-
-    <section id="finalistas" class="py-24 md:py-16 bg-slate-100">
-        <div class="container mx-auto max-w-6xl px-4 lg:px-8">
-            
-            <div class="flex flex-col items-center mb-4">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-dark tracking-tight text-center">Finalistas seleccionados</h2>
-                <div class="w-16 h-1 bg-brand mt-4 rounded-full"></div>
-                <p class="text-slate-500 mt-4 text-center max-w-2xl text-sm md:text-base">Lista oficial de los 8 estudiantes clasificados para la presentación de monólogos científicos.</p>
-            </div>
-
-            <!-- CONTENEDOR: MENSJE DE "PRÓXIMAMENTE" (Se muestra si mostrarFinalistas es false) -->
-            <div id="mensaje-espera-finalistas" class="bg-white rounded-xl shadow-lg border-t-4 border-slate-300 p-12 text-center mt-8">
-                <div class="text-4xl mb-4">⏳</div>
-                <h3 class="text-xl font-bold text-dark mb-2">Resultados en proceso</h3>
-                <p class="text-slate-600">La lista oficial de finalistas será publicada el <b class="text-brand">miércoles 14 de octubre</b>.</p>
-            </div>
-
-            <!-- CONTENEDOR: TABLA Y BOTONES (Se muestra si mostrarFinalistas es true) -->
-            <div id="contenido-finalistas" class="hidden">
-                <div class="bg-white rounded-xl shadow-lg border-t-4 border-brand overflow-hidden mt-8">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse min-w-[800px]">
-                            <thead class="bg-dark text-white">
-                                <tr>
-                                    <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs w-24">Región</th>
-                                    <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs">Institución Educativa</th>
-                                    <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs">Club de Ciencia y Tecnología</th>
-                                    <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs">Nombres y Apellidos</th>
-                                    <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs text-center">Grado de Estudios</th>
-                                    <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs w-1/5">Título del Monólogo</th>
-                                    <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs text-center">Clasificación</th>
-                                </tr>
-                            </thead>
-                            
-                            <tbody id="tabla-participantes" class="divide-y divide-slate-100">
-                                <tr>
-                                    <td colspan="7" class="py-6 px-4 text-center text-slate-500 text-sm font-medium">
-                                        <span class="animate-pulse">Cargando datos desde Google Sheets...</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            
-                <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4 mb-2">
-                    <a href="https://drive.google.com/file/d/1ZLPlSnbytXZBiC5w-grY-ZD8tE5CDnYM/view" target="_blank" class="flex items-center justify-center gap-2 px-6 py-2.5 bg-brand text-white font-semibold rounded-lg shadow-md hover:opacity-90 transition-all text-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
-                        Descargar Finalistas
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1j0AECjN-QFAZ8kifxzvPzInZLhnV7VQm/view" target="_blank" class="flex items-center justify-center gap-2 px-6 py-2.5 bg-slate-800 text-white font-semibold rounded-lg shadow-md hover:bg-slate-700 transition-all text-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        Descargar Acta de Jurado
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Script lógico para alternar la vista -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const msjEspera = document.getElementById('mensaje-espera-finalistas');
-            const contFinalistas = document.getElementById('contenido-finalistas');
-
-            if (mostrarFinalistas) {
-                msjEspera.classList.add('hidden');
-                contFinalistas.classList.remove('hidden');
-            } else {
-                msjEspera.classList.remove('hidden');
-                contFinalistas.classList.add('hidden');
-            }
-        });
-    </script>
 
     <!-- ---------------
     PRESENTACION
@@ -170,12 +85,6 @@
                         <p>El concurso de <b class="text-slate-800">Monólogos Científicos</b> para Clubes de Ciencia y Tecnología, es un espacio dedicado a fomentar la divulgación científica desde la edad escolar y promover las capacidades comunicativas entre los estudiantes miembros de los clubes.</p>
                         
                         <p>El concurso es organizado por el Concytec y está diseñado para inspirar y motivar a los estudiantes a participar activamente en la divulgación de sus áreas de indagación, a través de la preparación y presentación de monólogos científicos.</p>
-                        
-                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 mt-6">
-                            <p class="text-sm leading-relaxed">
-                                El presente concurso se llevará a cabo en el marco del <b class="text-slate-800">la feria Perú con Ciencia 2026</b>, a realizarse del <span class="font-bold text-brand">29 al 31 de octubre de 2026</span> en la ciudad de Chiclayo, región Lambayeque.
-                            </p>
-                        </div>
                     </div>
                 </div>
             
@@ -190,7 +99,7 @@
                     </div>
                     
                     <div class="text-slate-600 space-y-4 text-sm md:text-base flex-grow">
-                        <p>Pueden participar estudiantes de <b class="text-slate-800">nivel secundario</b> (2° a 5° grado), de instituciones educativas públicas o privadas, que sean miembros de <b class="text-slate-800">clubes de ciencia y tecnología</b> formalmente registrados en el SIGECCYT del Concytec, pertenecientes a instituciones educativas de la región Lambayeque.</p>
+                        <p>Pueden participar estudiantes de <b class="text-slate-800">nivel secundario</b> (2° a 5° grado), de instituciones educativas públicas o privadas, que sean miembros de <b class="text-slate-800">clubes de ciencia y tecnología</b> formalmente registrados en el SIGECCYT del Concytec, pertenecientes a instituciones educativas de la región Lima Metropolitana.</p>
                     </div>
                 </div>
             </div>
@@ -220,7 +129,7 @@
                     <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">Descarga los lineamientos técnicos y requisitos obligatorios para participar en el concurso.</p>
                     
                     <div class="mt-auto pt-4 border-t border-slate-100">
-                        <a href="https://drive.google.com/file/d/1YaMAjv0RNg7gU472J6YosSr5h9GLPg0h/view" target="_blank" class="inline-flex items-center gap-2 text-brand font-bold hover:text-brand/80 transition-colors group">
+                        <a href="https://drive.google.com/file/d/1YvlKQnLkvTnkIHMy3qyB92mJh4ThVq-_/view" target="_blank" class="inline-flex items-center gap-2 text-brand font-bold hover:text-brand/80 transition-colors group">
                             Descargar PDF 
                             <span class="transform transition-transform group-hover:translate-x-1">→</span>
                         </a>
@@ -236,11 +145,11 @@
                     </div>
                     
                     <h3 class="text-xl font-bold text-dark mb-3">Taller de capacitación</h3>
-                    <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">Taller virtual para la preparación de monólogos científicos, a cargo de la Dra. Myra Flores, química y divulgadora científica.</p>
+                    <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">Taller virtual para la preparación de monólogos científicos, a cargo de la Dra. Myra Flores, química y divulgadora científica. Se llevará a cabo el día 14 de octubre del 2026 a las 5:00 pm.</p>
                     
                     <div class="mt-auto pt-4 border-t border-slate-100 flex flex-col gap-3">
-                        <a href="https://drive.google.com/file/d/1SIZZwjZXlRcIRs8Vvrklp1ljmXkEKwpI/view?ts=6abc1751" target="_blank" class="inline-flex items-center gap-2 text-brand font-bold hover:text-brand/80 transition-colors group">
-                            Taller - Lambayeque 2026 
+                        <a href="https://zoom.us/j/96299919020?pwd=HoKY5wTptLuk1GcbaRVpNAaOtQVmRS.1" target="_blank" class="inline-flex items-center gap-2 text-brand font-bold hover:text-brand/80 transition-colors group">
+                            Taller - Lima Metropolitana 2026 
                             <span class="transform transition-transform group-hover:translate-x-1">→</span>
                         </a>
                         <a href="https://youtu.be/CCsvvGtIRN0" target="_blank" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-brand transition-colors group">
@@ -258,10 +167,10 @@
                     </div>
                     
                     <h3 class="text-xl font-bold text-dark mb-3">Postulación</h3>
-                    <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">El periodo de inscripción se encuentra abierto. Registra a tu Club de Ciencia y Tecnología y participa del concurso.</p>
+                    <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">El periodo de inscripción empezará el jueves 15 de octubre.</p>
                     
                     <div class="mt-auto pt-4 border-t border-slate-100">
-                        <a href="https://forms.gle/zAo4JoPUGTT6t9My7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-brand font-bold hover:text-brand/80 transition-colors group">
+                        <a href="https://forms.gle/7uy4GELSJAxy7Js36" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-brand font-bold hover:text-brand/80 transition-colors group">
                             Enviar información
                             <span class="transform transition-transform group-hover:translate-x-1">→</span>
                         </a>
@@ -296,23 +205,27 @@
                         <tbody class="divide-y divide-slate-100 text-sm">
                             <!-- ETAPA 1 (AHORA RESALTADA) -->
                             <tr class="bg-accent/5 hover:bg-accent/10 transition-colors">
-                                <td rowspan="3" class="py-6 px-6 align-middle relative border-b border-slate-100">
+                                <td rowspan="4" class="py-6 px-6 align-middle relative border-b border-slate-100">
                                     <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-accent"></div>
                                     <div class="font-bold text-dark text-base">Etapa 1</div>
                                     <div class="text-accent font-extrabold text-[11px] uppercase tracking-wider mt-1">Inscripción</div>
                                 </td>
                                 <td class="py-4 px-6 text-dark font-medium border-b border-accent/10">Invitación a participar vía correo electrónico a los docentes asesores.</td>
-                                <td class="py-4 px-6 text-accent font-bold whitespace-nowrap border-b border-accent/10">Miércoles 2 y jueves 3 de setiembre del 2026</td>
+                                <td class="py-4 px-6 text-accent font-bold whitespace-nowrap border-b border-accent/10">Lunes 05 de octubre del 2026</td>
                             </tr>
                             <tr class="bg-accent/5 hover:bg-accent/10 transition-colors">
                                 <td class="py-4 px-6 text-dark font-medium border-b border-accent/10">Taller de capacitación (virtual)</td>
-                                <td class="py-4 px-6 text-accent font-bold whitespace-nowrap border-b border-accent/10">Miércoles 16 de setiembre del 2026</td>
+                                <td class="py-4 px-6 text-accent font-bold whitespace-nowrap border-b border-accent/10">Miércoles 14 de octubre del 2026</td>
+                            </tr>
+                            <tr class="bg-accent/5 hover:bg-accent/10 transition-colors">
+                                <td class="py-4 px-6 text-dark font-medium border-b border-accent/10">Día inicial para envío del monólogo en video</td>
+                                <td class="py-4 px-6 text-accent font-bold whitespace-nowrap border-b border-accent/10">Jueves 15 de octubre del 2026</td>
                             </tr>
                             <tr class="bg-accent/5 hover:bg-accent/10 transition-colors">
                                 <td class="py-4 px-6 text-dark font-medium border-b border-slate-100">Fecha límite para envío del monólogo en video</td>
-                                <td class="py-4 px-6 text-accent font-bold whitespace-nowrap border-b border-slate-100">Domingo 11 de octubre del 2026</td>
+                                <td class="py-4 px-6 text-accent font-bold whitespace-nowrap border-b border-slate-100">Domingo 01 de noviembre del 2026</td>
                             </tr>
-
+                                
                             <!-- ETAPA 2 (NORMAL) -->
                             <tr class="hover:bg-slate-50 transition-colors">
                                 <td class="py-5 px-6 border-b border-slate-100 align-top bg-slate-50/30">
@@ -320,7 +233,7 @@
                                     <div class="text-slate-500 font-semibold text-[11px] uppercase tracking-wider mt-1">Selección</div>
                                 </td>
                                 <td class="py-5 px-6 text-slate-600 border-b border-slate-100">Publicación de finalistas</td>
-                                <td class="py-5 px-6 text-slate-500 whitespace-nowrap border-b border-slate-100">Miércoles 14 de octubre del 2026</td>
+                                <td class="py-5 px-6 text-slate-500 whitespace-nowrap border-b border-slate-100">Viernes 06 de noviembre del 2026</td>
                             </tr>
 
                             <!-- ETAPA 3 (AHORA NORMAL) -->
@@ -330,7 +243,7 @@
                                     <div class="text-slate-500 font-semibold text-[11px] uppercase tracking-wider mt-1">Final</div>
                                 </td>
                                 <td class="py-5 px-6 text-slate-600">Final (presencial)</td>
-                                <td class="py-5 px-6 text-slate-500 whitespace-nowrap">Sábado 31 de octubre del 2026</td>
+                                <td class="py-5 px-6 text-slate-500 whitespace-nowrap">Lunes 16 de noviembre del 2026</td>
                             </tr>
                         </tbody>
                     </table>
@@ -387,7 +300,6 @@
             </div>
 
             <div class="flex justify-center items-center mb-16">
-                <!-- Cambiamos el div por una etiqueta "a" y añadimos el enlace -->
                 <a href="https://www.gob.pe/concytec" target="_blank" rel="noopener noreferrer" class="group cursor-pointer block focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-4 rounded-lg">
                     <img src="assets/logos/logo-concytec.png" 
                         alt="Concytec" 
