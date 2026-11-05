@@ -1,17 +1,15 @@
-// 1. Cuenta Regresiva (Timer) con validación de seguridad
-const targetDate = new Date("June 14, 2026 23:59:59").getTime();
+// 1. Cuenta Regresiva al cierre: Domingo 8 de Noviembre de 2026 a las 23:59:59 (hora de Lima / Perú UTC-5)
+const targetDate = new Date("2026-11-08T23:59:59-05:00").getTime();
 
-const countdownInterval = setInterval(() => {
-    // Verificamos si el elemento existe en el HTML antes de hacer algo
+function actualizarContador() {
     const countdownElement = document.getElementById("countdown");
-    if (!countdownElement) return; // Si está comentado en el HTML, el JS se detiene aquí pacíficamente
+    if (!countdownElement) return;
 
     const now = new Date().getTime();
     const diff = targetDate - now;
 
     if (diff <= 0) {
-        clearInterval(countdownInterval);
-        countdownElement.innerHTML = "<span class='text-sm uppercase font-sans'>¡Inscripciones Cerradas!</span>";
+        countdownElement.innerHTML = "<span class='text-xs uppercase font-sans text-brand font-bold'>¡Inscripciones Cerradas!</span>";
         return;
     }
 
@@ -20,42 +18,42 @@ const countdownInterval = setInterval(() => {
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-    document.getElementById("days").innerText = d < 10 ? "0" + d : d;
-    document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
-    document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
-    document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
-}, 1000);
+    const elDays = document.getElementById("days");
+    const elHours = document.getElementById("hours");
+    const elMinutes = document.getElementById("minutes");
+    const elSeconds = document.getElementById("seconds");
 
+    if (elDays) elDays.innerText = d < 10 ? "0" + d : d;
+    if (elHours) elHours.innerText = h < 10 ? "0" + h : h;
+    if (elMinutes) elMinutes.innerText = m < 10 ? "0" + m : m;
+    if (elSeconds) elSeconds.innerText = s < 10 ? "0" + s : s;
+}
+
+// Ejecución inmediata al cargar para evitar parpadeos y luego actualización por segundo
+actualizarContador();
+const countdownInterval = setInterval(actualizarContador, 1000);
 
 
 // ---------
-// FINALISTAS
+// FINALISTAS (Google Sheets CSV)
 // ----------
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // ⚠️ REEMPLAZA ESTA URL CON EL ENLACE DE TU GOOGLE SHEET PUBLICADO COMO CSV
-    // https://docs.google.com/spreadsheets/d/1ynuQTaHvw0XDE_3ZLJ16nNV0uE0nWUjjvy-OLmOWqFM/edit?gid=1672089889#gid=1672089889
     const sheetCSVUrl = 'https://docs.google.com/spreadsheets/d/1ynuQTaHvw0XDE_3ZLJ16nNV0uE0nWUjjvy-OLmOWqFM/export?format=csv&gid=1672089889';
-    
     const tbody = document.getElementById('tabla-participantes');
+
+    // Si la tabla no está presente en la página actual, salimos de forma segura
+    if (!tbody) return;
 
     try {
         const respuesta = await fetch(sheetCSVUrl);
-        
-        // El formato por defecto de Google Sheets al publicar en web es UTF-8, 
-        // lo que garantiza compatibilidad con tildes y eñes.
         const datosCsv = await respuesta.text();
-        
-        // Dividir el CSV por filas manejando saltos de línea estándar
         const filas = datosCsv.split(/\r?\n/);
+        
         if (filas.length === 0 || !filas[0].trim()) throw new Error("El archivo CSV está vacío.");
 
-        // 1. LEER LOS ENCABEZADOS DE LA HOJA (Primera fila)
-        // Usamos una función auxiliar para separar por comas respetando celdas con comillas
         const encabezados = parsearFilaCSV(filas[0]).map(h => h.toLowerCase().trim());
 
-        // 2. BUSCAR LOS ÍNDICES DINÁMICAMENTE
-        // Cambia los textos de la derecha si en tu Excel los encabezados se llaman diferente
         const indices = {
             region: encabezados.indexOf('región'),
             institucion: encabezados.indexOf('institución educativa'),
@@ -66,25 +64,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             condicion: encabezados.indexOf('condición')
         };
 
-        // Intentar búsqueda secundaria más flexible si no se encuentra con tildes
         if (indices.region === -1) indices.region = encabezados.indexOf('region');
         if (indices.institucion === -1) indices.institucion = encabezados.indexOf('institucion educativa');
         if (indices.club === -1) indices.club = encabezados.indexOf('club de ciencia');
         if (indices.titulo === -1) indices.titulo = encabezados.indexOf('titulo del monologo');
         if (indices.condicion === -1) indices.condicion = encabezados.indexOf('condicion');
 
-        tbody.innerHTML = ''; // Limpiar el mensaje de "Cargando..."
+        tbody.innerHTML = '';
 
-        // 3. PROCESAR LAS FILAS DE LOS 8 PARTICIPANTES (omitimos el encabezado fila 0)
         let contadorParticipantes = 0;
 
         for (let i = 1; i < filas.length; i++) {
-            if (!filas[i].trim()) continue; // Ignorar filas vacías
-            if (contadorParticipantes >= 8) break; // Limitar estrictamente a 8 participantes
+            if (!filas[i].trim()) continue;
+            if (contadorParticipantes >= 8) break;
 
             const columnas = parsearFilaCSV(filas[i]);
 
-            // Extraer la información basándonos en los índices dinámicos detectados
             const valorRegion = indices.region !== -1 ? columnas[indices.region] : '-';
             const valorInstitucion = indices.institucion !== -1 ? columnas[indices.institucion] : '-';
             const valorClub = indices.club !== -1 ? columnas[indices.club] : '-';
@@ -93,7 +88,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             const valorTitulo = indices.titulo !== -1 ? columnas[indices.titulo] : '-';
             const valorCondicion = indices.condicion !== -1 ? columnas[indices.condicion] : 'Registrado';
 
-            // Crear la fila HTML inyectando los datos de forma segura
             const tr = document.createElement('tr');
             tr.className = 'hover:bg-slate-50 transition-colors group';
             
@@ -130,11 +124,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-/**
- * Función auxiliar para procesar una línea de CSV correctamente.
- * Respeta comas internas si la celda está envuelta en comillas ("Texto, con comas")
- * y remueve las comillas sobrantes al final.
- */
 function parsearFilaCSV(linea) {
     const resultado = [];
     let celdaActual = '';
@@ -144,7 +133,7 @@ function parsearFilaCSV(linea) {
         const caracter = linea[i];
 
         if (caracter === '"') {
-            dentroDeComillas = !dentroDeComillas; // Alternar estado
+            dentroDeComillas = !dentroDeComillas;
         } else if (caracter === ',' && !dentroDeComillas) {
             resultado.push(celdaActual.trim());
             celdaActual = '';
@@ -152,7 +141,7 @@ function parsearFilaCSV(linea) {
             celdaActual += caracter;
         }
     }
-    resultado.push(celdaActual.trim()); // Añadir la última celda
+    resultado.push(celdaActual.trim());
     return resultado;
 }
 
@@ -167,18 +156,20 @@ fetch(URL)
         const json = JSON.parse(data.substr(47).slice(0, -2));
         const rows = json.table.rows;
         const contenedor = document.getElementById('contenedor-videos');
+        if (!contenedor) return;
         
-        let htmlTarjetas = ''; // Guardamos todo el HTML aquí para mayor rendimiento
+        let htmlTarjetas = '';
 
         rows.slice(1).forEach(row => {
-            const idVideo = row.c[0].v;
+            const idVideo = row.c[0] ? row.c[0].v : '';
+            if (!idVideo) return;
+
             const titulo = row.c[1] ? row.c[1].v : "Sin título";
             const descripcion = row.c[2] ? row.c[2].v : "";
 
             const thumbHD = `https://img.youtube.com/vi/${idVideo}/maxresdefault.jpg`;
             const thumbSD = `https://img.youtube.com/vi/${idVideo}/hqdefault.jpg`;
 
-            // ¡IMPORTANTE! Aquí están las clases shrink-0, w-full, md:w-[calc(50%-12px)] y snap-center
             const card = `
                 <div class="shrink-0 w-full md:w-[calc(50%-12px)] snap-center bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 border-t-4 border-brand overflow-hidden flex flex-col">
                     <div class="aspect-video relative group cursor-pointer bg-black overflow-hidden" 
@@ -208,17 +199,20 @@ fetch(URL)
             htmlTarjetas += card;
         });
         
-        // Imprimimos todas las tarjetas de una sola vez
         contenedor.innerHTML = htmlTarjetas;
     })
     .catch(err => {
         console.error(err);
-        document.getElementById('contenedor-videos').innerHTML = '<p class="text-red-500 text-center w-full py-12">Error al cargar los videos. Por favor, intenta nuevamente más tarde.</p>';
+        const contenedor = document.getElementById('contenedor-videos');
+        if (contenedor) {
+            contenedor.innerHTML = '<p class="text-red-500 text-center w-full py-12">Error al cargar los videos. Por favor, intenta nuevamente más tarde.</p>';
+        }
     });
 
 // 4. Función global para reproducir los vídeos en iFrame al hacer clic
 function loadVideo(id) {
     const container = document.getElementById(`container-${id}`);
+    if (!container) return;
     container.innerHTML = `
         <iframe 
             class="w-full h-full" 
@@ -235,9 +229,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnPrev = document.getElementById('btn-prev-video');
     const btnNext = document.getElementById('btn-next-video');
 
-    if(btnNext && btnPrev && contenedorVideos) {
+    if (btnNext && btnPrev && contenedorVideos) {
         btnNext.addEventListener('click', () => {
-            // Avanza exactamente la mitad del ancho visible (1 tarjeta y su margen)
             const scrollAmount = contenedorVideos.clientWidth / 2; 
             contenedorVideos.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         });
