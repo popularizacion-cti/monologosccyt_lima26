@@ -39,7 +39,7 @@ const countdownInterval = setInterval(actualizarContador, 1000);
 // ----------
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const sheetCSVUrl = 'https://docs.google.com/spreadsheets/d/1ynuQTaHvw0XDE_3ZLJ16nNV0uE0nWUjjvy-OLmOWqFM/export?format=csv&gid=1672089889';
+    const sheetCSVUrl = 'https://docs.google.com/spreadsheets/d/10R58uEDb4t4oOh8VjUxLcqLUR2U8iHoTITKkKVNidvo/export?format=csv&gid=0';
     const tbody = document.getElementById('tabla-participantes');
 
     // Si la tabla no está presente en la página actual, salimos de forma segura
@@ -61,14 +61,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             nombres: encabezados.indexOf('nombres y apellidos'),
             grado: encabezados.indexOf('grado de estudios'),
             titulo: encabezados.indexOf('título del monólogo'),
-            condicion: encabezados.indexOf('condición')
+            // condicion: encabezados.indexOf('condición')
         };
 
         if (indices.region === -1) indices.region = encabezados.indexOf('region');
         if (indices.institucion === -1) indices.institucion = encabezados.indexOf('institucion educativa');
         if (indices.club === -1) indices.club = encabezados.indexOf('club de ciencia');
         if (indices.titulo === -1) indices.titulo = encabezados.indexOf('titulo del monologo');
-        if (indices.condicion === -1) indices.condicion = encabezados.indexOf('condicion');
+        // if (indices.condicion === -1) indices.condicion = encabezados.indexOf('condicion');
 
         tbody.innerHTML = '';
 
@@ -98,11 +98,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <td class="py-3 px-4 text-dark font-bold text-sm">${valorNombres}</td>
                 <td class="py-3 px-4 text-slate-600 font-medium text-center text-sm">${valorGrado}</td>
                 <td class="py-3 px-4 text-slate-700 font-medium leading-tight text-sm">${valorTitulo}</td>
-                <td class="py-3 px-4 text-center">
-                    <span class="inline-block px-3 py-1 bg-brand/10 text-brand font-bold text-[11px] uppercase tracking-wide rounded-full">
-                        ${valorCondicion}
-                    </span>
-                </td>
+                
             `;
             tbody.appendChild(tr);
             contadorParticipantes++;
