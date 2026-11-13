@@ -30,10 +30,10 @@
     <!-- --------------------------
     CINTILLO SUPERIOR (ANUNCIO + CONTADOR)
     --------------------------- -->
-    <div class="bg-dark text-white py-2 px-4 text-center text-xs md:text-sm font-medium sticky top-0 z-50 shadow-md border-b border-white/10 flex flex-wrap items-center justify-center gap-2 md:gap-3">
+    <!-- <div class="bg-dark text-white py-2 px-4 text-center text-xs md:text-sm font-medium sticky top-0 z-50 shadow-md border-b border-white/10 flex flex-wrap items-center justify-center gap-2 md:gap-3">
         <span>📢 <strong class="text-brand">Cierre de inscripciones:</strong> Domingo 08 de noviembre (11:59 p.m.)</span>
         
-        <!-- Contador activo -->
+        
         <div id="countdown" class="inline-flex items-center gap-1 font-mono font-bold bg-black/30 px-2.5 py-0.5 rounded-full text-white text-xs border border-white/10 shadow-inner">
             <span class="text-brand">⏳ Quedan:</span>
             <span id="days">00</span>d :
@@ -45,7 +45,7 @@
         <a href="#bases" class="hidden sm:inline-block bg-brand hover:bg-brand/80 text-white font-bold text-[11px] px-2.5 py-0.5 rounded-full uppercase tracking-wider transition-colors ml-1">
             Ver más
         </a>
-    </div>
+    </div> -->
 
     <header id="inicio" class="relative h-[80vh] flex items-center justify-center text-center text-white bg-slate-900">
         <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-40">
@@ -59,7 +59,19 @@
             <h1 class="text-4xl md:text-6xl font-extrabold mb-2 mt-48 md:mt-52">Concurso de <br> <span class="text-brand">Monólogos Científicos</span> <br></h1>
             <p class="text-3xl md:text-4xl mb-2 max-w-3xl mx-auto font-extrabold">para Clubes de Ciencia y Tecnología</p>
             <p class="text-3xl md:text-4xl mb-6 max-w-3xl mx-auto">Lima Metropolitana 2026</p>
+        
+            <div class="mt-8 flex flex-wrap justify-center gap-3 md:gap-4 w-full">
+                
+                <a href="#finalistas" class="text-xl w-full sm:w-auto border-2 border-accent bg-accent px-6 py-3 rounded-xl font-bold text-white hover:bg-accent/80 hover:border-accent/80 hover:scale-105 transition-all duration-300 shadow-lg shadow-accent/30">
+                    FINALISTAS
+                </a>
+                
+            </div>
+        
+        
         </div>
+
+        
     </header>
 
     <nav class="sub-nav sticky top-[36px] md:top-[40px] z-40 flex flex-wrap justify-center gap-0 md:gap-4 bg-slate-50 border-b border-slate-200 py-0 md:py-1 px-4 shadow-sm backdrop-blur-md bg-slate-50/90">
@@ -68,6 +80,52 @@
         <a href="#cronograma" class="text-xs md:text-sm font-bold text-slate-600 hover:text-brand transition-colors px-2 py-1">Cronograma</a>
         <a href="#videos" class="text-xs md:text-sm font-bold text-slate-600 hover:text-brand transition-colors px-2 py-1">Galería de videos</a>
     </nav>
+
+    <!-- -------------
+    FINALISTAS
+    ------------- -->
+    
+    <section id="finalistas" class="py-24 md:py-16 bg-slate-100">
+        <div class="container mx-auto max-w-6xl px-4 lg:px-8">
+            
+            <div class="flex flex-col items-center mb-4">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-dark tracking-tight text-center">Finalistas seleccionados</h2>
+                <div class="w-16 h-1 bg-brand mt-4 rounded-full"></div>
+                <p class="text-slate-500 mt-4 text-center max-w-2xl text-sm md:text-base">Lista oficial de los 6 estudiantes clasificados para la presentación presencial en la final del concurso de monólogos científicos.</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg border-t-4 border-brand overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[800px]">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs w-24">UGEL</th>
+                                <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs">Institución Educativa</th>
+                                <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs">Club de Ciencia y Tecnología</th>
+                                <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs">Nombres y Apellidos</th>
+                                <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs text-center">Grado</th>
+                                <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs w-1/5">Título del Monólogo</th>
+                                <!-- <th class="py-3 px-4 font-bold uppercase tracking-wider text-xs text-center">Clasificación</th> -->
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="tabla-participantes" class="divide-y divide-slate-100">
+                            <tr>
+                                <td colspan="6" class="py-6 px-4 text-center text-slate-500 text-sm font-medium">
+                                    <span class="animate-pulse">Cargando datos desde Google Sheets...</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+            
+            
+
+        </div>
+    </section>
+
 
     <!-- ---------------
     PRESENTACION
@@ -195,72 +253,72 @@
     --------------------  -->
 
     <section id="cronograma" class="py-24 md:py-16 bg-slate-50">
-        <div class="container mx-auto max-w-6xl px-6 lg:px-8">
-            <div class="flex flex-col items-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-dark tracking-tight text-center">Cronograma</h2>
-                <div class="w-16 h-1 bg-brand mt-4 rounded-full"></div>
-            </div>
+    <div class="container mx-auto max-w-6xl px-6 lg:px-8">
+        <div class="flex flex-col items-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-dark tracking-tight text-center">Cronograma</h2>
+            <div class="w-16 h-1 bg-brand mt-4 rounded-full"></div>
+        </div>
 
-            <div class="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-t-4 border-brand overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse min-w-[600px]">
-                        <thead class="bg-dark text-white">
-                            <tr>
-                                <th class="py-4 px-6 font-bold uppercase tracking-wider text-xs w-48">Etapa</th>
-                                <th class="py-4 px-6 font-bold uppercase tracking-wider text-xs">Hitos</th>
-                                <th class="py-4 px-6 font-bold uppercase tracking-wider text-xs w-64">Fecha</th>
-                            </tr>
-                        </thead>
-                        
-                        <tbody class="divide-y divide-slate-100 text-sm">
-                            <!-- ETAPA 1 (RESALTADA) -->
-                            <tr class="bg-accent/5 hover:bg-accent/10 transition-colors">
-                                <td rowspan="4" class="py-6 px-6 align-middle relative border-b border-slate-100">
-                                    <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-accent"></div>
-                                    <div class="font-bold text-dark text-base">Etapa 1</div>
-                                    <div class="text-accent font-extrabold text-[11px] uppercase tracking-wider mt-1">Inscripción</div>
-                                </td>
-                                <td class="py-4 px-6 text-dark font-medium border-b border-accent/10">Invitación a participar vía correo electrónico a los docentes asesores.</td>
-                                <td class="py-4 px-6 text-accent font-bold whitespace-nowrap border-b border-accent/10">Lunes 05 de octubre del 2026</td>
-                            </tr>
-                            <tr class="bg-accent/5 hover:bg-accent/10 transition-colors">
-                                <td class="py-4 px-6 text-dark font-medium border-b border-accent/10">Taller de capacitación (virtual)</td>
-                                <td class="py-4 px-6 text-accent font-bold whitespace-nowrap border-b border-accent/10">Miércoles 14 de octubre del 2026</td>
-                            </tr>
-                            <tr class="bg-accent/5 hover:bg-accent/10 transition-colors">
-                                <td class="py-4 px-6 text-dark font-medium border-b border-accent/10">Día inicial para envío del monólogo en video</td>
-                                <td class="py-4 px-6 text-accent font-bold whitespace-nowrap border-b border-accent/10">Jueves 15 de octubre del 2026</td>
-                            </tr>
-                            <tr class="bg-accent/5 hover:bg-accent/10 transition-colors">
-                                <td class="py-4 px-6 text-dark font-medium border-b border-slate-100">Fecha límite para envío del monólogo en video</td>
-                                <td class="py-4 px-6 text-accent font-bold whitespace-nowrap border-b border-slate-100">Domingo 08 de noviembre del 2026</td>
-                            </tr>
-                                
-                            <!-- ETAPA 2 (NORMAL) -->
-                            <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="py-5 px-6 border-b border-slate-100 align-top bg-slate-50/30">
-                                    <div class="font-bold text-dark text-base">Etapa 2</div>
-                                    <div class="text-slate-500 font-semibold text-[11px] uppercase tracking-wider mt-1">Selección</div>
-                                </td>
-                                <td class="py-5 px-6 text-slate-600 border-b border-slate-100">Publicación de finalistas</td>
-                                <td class="py-5 px-6 text-slate-500 whitespace-nowrap border-b border-slate-100">Viernes 13 de noviembre del 2026</td>
-                            </tr>
+        <div class="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-t-4 border-brand overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse min-w-[600px]">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th class="py-4 px-6 font-bold uppercase tracking-wider text-xs w-48">Etapa</th>
+                            <th class="py-4 px-6 font-bold uppercase tracking-wider text-xs">Hitos</th>
+                            <th class="py-4 px-6 font-bold uppercase tracking-wider text-xs w-64">Fecha</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody class="divide-y divide-slate-100 text-sm">
+                        <!-- ETAPA 1 (NORMAL) -->
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td rowspan="4" class="py-6 px-6 align-top bg-slate-50/30 border-b border-slate-100">
+                                <div class="font-bold text-dark text-base">Etapa 1</div>
+                                <div class="text-slate-500 font-semibold text-[11px] uppercase tracking-wider mt-1">Inscripción</div>
+                            </td>
+                            <td class="py-4 px-6 text-slate-600 border-b border-slate-100">Invitación a participar vía correo electrónico a los docentes asesores.</td>
+                            <td class="py-4 px-6 text-slate-500 whitespace-nowrap border-b border-slate-100">Lunes 05 de octubre del 2026</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="py-4 px-6 text-slate-600 border-b border-slate-100">Taller de capacitación (virtual)</td>
+                            <td class="py-4 px-6 text-slate-500 whitespace-nowrap border-b border-slate-100">Miércoles 14 de octubre del 2026</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="py-4 px-6 text-slate-600 border-b border-slate-100">Día inicial para envío del monólogo en video</td>
+                            <td class="py-4 px-6 text-slate-500 whitespace-nowrap border-b border-slate-100">Jueves 15 de octubre del 2026</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="py-4 px-6 text-slate-600 border-b border-slate-100">Fecha límite para envío del monólogo en video</td>
+                            <td class="py-4 px-6 text-slate-500 whitespace-nowrap border-b border-slate-100">Domingo 08 de noviembre del 2026</td>
+                        </tr>
+                            
+                        <!-- ETAPA 2 (NORMAL) -->
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="py-5 px-6 border-b border-slate-100 align-top bg-slate-50/30">
+                                <div class="font-bold text-dark text-base">Etapa 2</div>
+                                <div class="text-slate-500 font-semibold text-[11px] uppercase tracking-wider mt-1">Selección</div>
+                            </td>
+                            <td class="py-5 px-6 text-slate-600 border-b border-slate-100">Publicación de finalistas</td>
+                            <td class="py-5 px-6 text-slate-500 whitespace-nowrap border-b border-slate-100">Viernes 13 de noviembre del 2026</td>
+                        </tr>
 
-                            <!-- ETAPA 3 (NORMAL) -->
-                            <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="py-5 px-6 align-top bg-slate-50/30">
-                                    <div class="font-bold text-dark text-base">Etapa 3</div>
-                                    <div class="text-slate-500 font-semibold text-[11px] uppercase tracking-wider mt-1">Final</div>
-                                </td>
-                                <td class="py-5 px-6 text-slate-600">Final (presencial)</td>
-                                <td class="py-5 px-6 text-slate-500 whitespace-nowrap">Jueves 19 de noviembre del 2026</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        <!-- ETAPA 3 (RESALTADA) -->
+                        <tr class="bg-accent/5 hover:bg-accent/10 transition-colors">
+                            <td class="py-5 px-6 align-middle relative border-b border-slate-100">
+                                <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-accent"></div>
+                                <div class="font-bold text-dark text-base">Etapa 3</div>
+                                <div class="text-accent font-extrabold text-[11px] uppercase tracking-wider mt-1">Final</div>
+                            </td>
+                            <td class="py-5 px-6 text-dark font-medium border-b border-slate-100">Final (presencial)</td>
+                            <td class="py-5 px-6 text-accent font-bold whitespace-nowrap border-b border-slate-100">Jueves 19 de noviembre del 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- --------------------
     GALERIA DE VIDEOS
@@ -339,14 +397,14 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pb-12 border-b border-white/10">
                 
-                <div class="flex flex-col items-center">
+                <div class=" flex-col items-center text-center">
                     <a href="https://www.gob.pe/concytec" target="_blank" rel="noopener noreferrer" class="block mb-6 transition-transform duration-300 hover:scale-105">
-                        <img src="assets/logos/logo-concytec-horizontal.png" alt="Concytec" class="h-32 brightness-0 invert opacity-90 hover:opacity-100 transition-opacity duration-300">
+                        <img src="assets/logos/logo-concytec-horizontal.png" alt="Concytec" class=" tracking-wide text-center h-24 brightness-0 invert opacity-90 hover:opacity-100 transition-opacity duration-300 ">
                     </a>
                     
                     <a href="#inicio" rel="noopener noreferrer" class="block group cursor-pointer">
                         <h3 class="text-brand font-extrabold text-2xl mb-3 tracking-wide text-center transition-colors duration-300 group-hover:text-white">
-                            Clubes de Ciencia y Tecnología
+                            Concurso de Monólogos Científicos
                         </h3>
                     </a>
                 </div>
